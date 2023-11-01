@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 /**
  * Permissible Dating Age program
  *
- * @author Mr. Jaffe
- * @version 2021-06-22 Version 1.0.0
+ * @author elliot omark
+ * @version 2023-11-1 Version 1.0.0
  */
 public class PDA
 {
@@ -24,55 +24,48 @@ public class PDA
      * This is the main event loop for our PDA program
      */
     public void runEventLoop() {
-        Scanner inputs=new Scanner(System.in);
-        int age; int age2;
-        int LOWER_BOUND=0; int young=1;
+        boolean should_continue=true;
         while(true){
             System.out.println("How old are you?");
+            Scanner inputs=new Scanner(System.in);
+            int age; int old=0; int young=0;
+            int LOWER_BOUND=0;
+
             try{
-                age= inputs.nextInt(); 
-                System.out.println(age);
+                age= inputs.nextInt();
+                if(age<LOWER_BOUND){
+                    System.out.println(age+" is too young!!");
+                }else {
+                    old=age-7;old=old*2;
+                    young=age/2;young=young+7;
+                    Math.round(young);
+                    Math.round(old);
+                    if(young<0||old<0){
+                        System.out.println("pardon me HWHAT!!");
+                        System.out.println(young+" to "+old+" is your age range");
+                    }if(young<18){
+                        System.out.println("your a pedophile");
+                        System.out.println(young+" to "+old+" is your age range");
+                    }else{
+                        System.out.println(young+" to "+old+" is your age range");
+                    }
+                }
             } catch(InputMismatchException error){
                 System.out.println("Please enter an integer next time");
-                System.out.println("please reset");
-                System.exit(0);
+                inputs.next();
             }
-            age= inputs.nextInt();
-
-            System.out.println("younger or older");
-            Scanner yong_or_olda=new Scanner(System.in);
+            Scanner Continue=new Scanner(System.in);
+            System.out.println("Do you wish to continue, 1 for yes, 0 for no");
             try{
-                young= yong_or_olda.nextInt(); 
-                System.out.println(age);
+                int l=Continue.nextInt();
+                if(l==0){
+                    System.out.println("thank you for playing");
+                    should_continue=false;
+                }
             } catch(InputMismatchException error){
                 System.out.println("Please enter an integer next time");
-                System.out.println("please reset");
-                System.exit(0);
+                Continue.next();
             }
-
-            young= yong_or_olda.nextInt(); 
-            if(young==1){
-                age2=age/2;
-                age2=age2+7;
-                if (age2<18){
-                    System.out.println("pedophile you match with people under 18"); 
-                }else{
-                    System.out.println(age2);    
-                }
-            }
-            if(young==0){
-                age2=age*2;
-                age2=age2-7;
-                if (age2<18){
-                    System.out.println("pedophile you match with people under 18"); 
-                }else{
-                    System.out.println(age2); 
-                }
-            }else{
-                System.out.println("not a valid input please try again");
-                System.exit(0);
-            }
-
         }
     }
 
