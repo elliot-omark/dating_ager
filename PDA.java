@@ -25,29 +25,31 @@ public class PDA
      */
     public void runEventLoop() {
         boolean should_continue=true;
-        while(true){
+        while(should_continue==true){
             System.out.println("How old are you?");
             Scanner inputs=new Scanner(System.in);
-            int age; int old=0; int young=0;
-            int LOWER_BOUND=0;
+            float age; float old=0; float young=0;
+            int LOWER_BOUND=13;
 
             try{
                 age= inputs.nextInt();
-                if(age<LOWER_BOUND){
+                if(age<=LOWER_BOUND){
                     System.out.println(age+" is too young!!");
                 }else {
-                    old=age-7;old=old*2;
-                    young=age/2;young=young+7;
-                    Math.round(young);
-                    Math.round(old);
+                    old=(age-7)*2;
+                    young=(age/2)+7;
+                    Math.ceil(young);
+                    Math.floor(old);
                     if(young<0||old<0){
-                        System.out.println("pardon me HWHAT!!");
-                        System.out.println(young+" to "+old+" is your age range");
-                    }if(young<18){
-                        System.out.println("your a pedophile");
-                        System.out.println(young+" to "+old+" is your age range");
+                        System.out.println("NO");
+                        System.out.println("JUST NO");
+                    }if(young<21){
+                        System.out.println("The creator of this code" +
+                        " does not condone this");
+                        System.out.println(Math.round(young)+" to "+Math.round(old)+
+                        " is your age range");
                     }else{
-                        System.out.println(young+" to "+old+" is your age range");
+                        System.out.println(Math.round(young)+" to "+Math.round(old)+" is your age range");
                     }
                 }
             } catch(InputMismatchException error){
@@ -61,6 +63,7 @@ public class PDA
                 if(l==0){
                     System.out.println("thank you for playing");
                     should_continue=false;
+                    
                 }
             } catch(InputMismatchException error){
                 System.out.println("Please enter an integer next time");
